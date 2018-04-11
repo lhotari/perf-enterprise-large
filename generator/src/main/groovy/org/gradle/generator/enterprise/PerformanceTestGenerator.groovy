@@ -286,9 +286,11 @@ if(measurementPluginEnabled) {
                 output.println("            exclude ${parts.join(', ')}")
             }
         }
-        output.println("            resolutionStrategy {")
-        output.println("                force ${forcedModules.collect { "'${gavMapper.mapGAVToString(it)}'" }.join(', ')}")
-        output.println("            }")
+        if (forcedModules) {
+            output.println("            resolutionStrategy {")
+            output.println("                force ${forcedModules.collect { "'${gavMapper.mapGAVToString(it)}'" }.join(', ')}")
+            output.println("            }")
+        }
         output.println("        }")
     }
 
